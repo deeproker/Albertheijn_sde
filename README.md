@@ -29,8 +29,70 @@ Before you begin, ensure you have the following installed:
 
 ## Installation
 
-1. **Clone the Repository:**
+pip install -r app/requirements.txt
 
-   ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+## Folder Structure
+
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── database.py
+│   ├── models/
+│   │   ├── __init__.py
+│   │   └── workflow.py
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── workflow_service.py
+│   │   └── report_service.py
+│   └── routes/
+│       ├── __init__.py
+│       └── workflow_routes.py
+├── tests/
+│   ├── __init__.py
+│   ├── test_workflow.py
+│   └── test_reports.py
+├── requirements.txt
+├── Dockerfile
+└── docker-compose.yml
+
+## Ways to start App 
+
+## Option 1: 
+
+uvicorn app.main:app --reload
+App will be reachable at http://127.0.0.1:8000
+
+## Option 2:
+docker-compose up --build 
+
+## Testing API 
+
+Step 1: 
+
+curl -X POST "http://127.0.0.1:8000/ingest/workflow" -H "Content-Type: application/json" -d '[
+  {
+    "id": "16081779-b239-4b9e-a61b-2f4d8f202667",
+    "project": 1,
+    "team": "team-1",
+    "ts_start": 1735689661,
+    "duration": 62,
+    "runner_id": 3,
+    "name": "BUILD",
+    "success": 1
+  }
+]'
+{"message":"Inserted 1 workflows"}
+
+Step 2:
+
+curl "http://127.0.0.1:8000/report/weekly-cost"                                               
+[{"team":"team-1","week":"2025-00","total_cost":0.004}]% 
+
+Step 3:
+
+curl "http://127.0.0.1:8000/report/running-cost?start_date=2025-01-01&end_date=2025-01-03"    
+[{"date":"2025-01-01","running_total":0.004},{"date":"2025-01-02","running_total":0.004},{"date":"2025-01-03","running_total":0.004}]% 
+
+## Unittest
+
+python -m unittest discover -s tests
