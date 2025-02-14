@@ -1,0 +1,5 @@
+fastapi
+sqllite3
+uvicorn
+pydantic
+httpx
