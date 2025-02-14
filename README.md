@@ -1,4 +1,4 @@
-# Albertheijn Project Summary
+# Albertheijn Project
 
 Similar project was done to capture the Pyspark logs (Running on Databricks) using below flow in my current project:
 
