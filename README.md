@@ -1,4 +1,14 @@
 # Albertheijn_sde
+
+Similar project was done to capture the Pyspark logs (Running on Databricks) using below flow in my current project:
+
+Databricks Jobs (Instrumentation of OTEL Call) -- > Opentelemetry POD Running on Openshift Cluster -- > Splunk (Logs , Traces and Metrics)
+For centralised Observability using Splunks Visualization
+
+## Further Enhancement in Current API Call -- > Perform Server side Caching capabilities for last 30 min (Already queried workflows runs) to save cost and improve performance of API.
+
+## Manage the API in a API Gateway for security and balance the traffic using Load balancer traffic towards it.
+
 # FastAPI Workflow Management Application
 
 ## Overview
